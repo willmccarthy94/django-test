@@ -1,0 +1,11 @@
+{% extends 'engagementSurvey/base.html' %}
+{% block title %}{{ company.company_name }} Survey Results{% endblock %}
+{% block content %}
+
+<form action="{% url 'engagementSurvey:new' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

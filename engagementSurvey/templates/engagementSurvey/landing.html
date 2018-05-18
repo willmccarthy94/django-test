@@ -1,0 +1,34 @@
+{% extends 'engagementSurvey/base.html' %}
+{% block title %}{{ company.company_name }} Survey by HRPM{% endblock %}
+{% block content %}
+
+{% if company %}
+
+    <section class="spotlight">
+
+        <!-- <div class="image"><img src='' alt="company-logo" /></div> Company Logo-->
+        <div class="content">
+            <h3>Welcome to the survey</h3>
+            <p>Thank you for taking part in the {{ company.company_name }} employee engagement survey, run by HRPM. All of your answers are confidential and we don't ask you for any personal details. Only anonymous data is sent to {{ company.company_name }} by HRPM.</p>
+        </div>
+    </section>
+    
+    <form action="" method="post">
+            {% csrf_token %}
+            <div class="12u$">
+                <div class="select-wrapper">{{ form.employee_type }}</div>
+            </div>
+            <br>
+            <div class="12u$">
+                <div class="select-wrapper">{{ form.employee_department }}</div>
+            </div>
+            <br>
+        <input type="submit" value="Submit">
+    </form>
+
+{% else %}
+    <p>This company doesn't have a survey</p>
+{% endif %}
+
+
+{% endblock %}

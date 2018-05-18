@@ -1,0 +1,44 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>{% block title %}HRMP Survey{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="{% static 'engagementSurvey/css/main.css' %}" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    </head>
+
+
+        <!-- Header -->
+        <section id="three" class="wrapper style2 special">
+            <header class="major">
+                    <h2> {{company_name}} Employee Engagement Survey</h2>
+            </header>
+        </section>
+
+    
+       
+
+    <body id="top">
+        <div class="content">
+            
+
+            <section id="two" class="wrapper">
+                <div class="inner alt">
+
+                    {% block content %}{% endblock %}
+                    
+                    <p>Survey run by HRPM</p>
+
+                </div>
+
+
+            </section>
+        </div><br>
+    </body><br>
+    
+
+</html>

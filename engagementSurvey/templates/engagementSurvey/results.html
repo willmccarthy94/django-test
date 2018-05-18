@@ -1,0 +1,81 @@
+{% extends 'engagementSurvey/base.html' %}
+{% block title %}{{company_name}} Survey Results{% endblock %}
+{% block content %}
+
+<header>
+    <h2>Survey results for {{company_name}}</h2>
+</header>
+
+<div class="row">
+    <div class="6u 12u$(medium)">
+        <h5>Questions</h5>
+        
+        <ul>
+        {% for question in company_questions %}
+        <li>{{question}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    
+</div>
+
+<div class="row">
+
+    <div class="6u 12u$(medium)">
+            <h5>Employees</h5>
+            
+            <ul>
+            {% for employee in company_employees %}
+            <li><a href="/admin/engagementSurvey/employee/{{employee.eid}}/change/">{{employee}}</a></li>
+            {% endfor %}
+            </ul>
+    </div>
+
+    <div class="6u 12u$(medium)">
+            <h5>Employees Links</h5>
+            
+            <ul>
+            {% for employee in company_employees %}
+            <li><a href="/engagementSurvey/{{company_name}}/{{employee.secret_id}}/">engagementSurvey/{{company_name}}/{{employee.secret_id}}/</a></li>
+            {% endfor %}
+            </ul>
+    </div>
+
+    <div class="6u 12u$(medium)">
+            <h5>Employees That Have Answered ({{company_employees_answered_count}})</h5>
+            
+            <ul>
+            {% for employee in company_employees_answered %}
+            <li><a href="/admin/engagementSurvey/employee/{{employee.eid}}/change/">{{employee}}</a></li>
+            {% endfor %}
+            </ul>
+    </div>
+
+
+
+</div>
+
+    <div class="row">
+        <div class="6u 12u$(medium)">
+            <h5>Answers</h5>
+            
+            <ul>
+            {% for answer in company_answers %}
+            <li>{{answer}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+
+
+    <div class="row">
+        <div class="6u 12u$(medium)">
+            <p>
+            <a href="{% url 'engagementSurvey:export_answers_csv' company_name %}">Export all answers</a>
+            </p>
+        </div>
+    </div>
+
+
+    {% endblock %}

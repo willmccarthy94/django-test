@@ -1,0 +1,60 @@
+{% extends 'engagementSurvey/base.html' %}
+{% block title %}{{ company.company_name }} Survey by HRPM{% endblock %}
+{% block content %}
+
+{% if company_questions %}
+    <ul>
+    
+    <form action="{% url 'engagementSurvey:submit' company_name=company_name secret_id=secret_id %}" method="post">
+        {% csrf_token %}
+
+        {% for question in company_questions %}
+        
+            <div class="row uniform">
+                <div class="12u$">
+                    <h1>{{ question.question_text }}</h2>
+                    <p>{{ question.question_detail }}</p>
+
+                    {% if question.question_type == 'G' or question.question_type == 'GP' %}
+                        <div class="actions fit small">
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.1" value="1" />
+                            <label for="{{ question.question_id }}.1">1</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.2" value="2" />
+                            <label for="{{ question.question_id }}.2">2</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.3" value="3" />
+                            <label for="{{ question.question_id }}.3">3</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.4" value="4" checked />
+                            <label for="{{ question.question_id }}.4">4</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.5" value="5" />
+                            <label for="{{ question.question_id }}.5">5</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.6" value="6" />
+                            <label for="{{ question.question_id }}.6">6</label>
+                            <input type="radio" name="{{ question.question_id }}" id="{{ question.question_id }}.7" value="7" />
+                            <label for="{{ question.question_id }}.7">7</label>
+                        </div>
+                        {% if question.question_type == "GP" %}
+                            <textarea rows="4" cols="50" name="{{ question.question_id }}_text" placeholder="{{ question.default_text }}" ></textarea><br>
+                        {% endif %}
+                    {% elif question.question_type == "TB" %}
+                        <textarea rows="4" cols="50" name="{{ question.question_id }}_text">Answer</textarea><br>
+                    {% endif %}
+
+                </div>
+                
+            </div>
+
+            <br>
+        {% endfor %}
+
+        <input type="submit" value="Submit Form">
+    </form>
+
+</ul>
+{% else %}
+    <p>This survey doesn't have any questions!</p>
+{% endif %}
+
+</html>
+
+
+{% endblock %}

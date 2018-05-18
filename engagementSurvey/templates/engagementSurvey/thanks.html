@@ -1,0 +1,12 @@
+{% extends 'engagementSurvey/base.html' %}
+{% block title %}{{ company.company_name }} Survey by HRPM{% endblock %}
+{% block content %}
+
+
+{% if company_name %}
+    <h1>Thank you for completing the survey!</h1>
+{% else %}
+    <p>Uh oh</p>
+{% endif %}
+
+{% endblock %}
